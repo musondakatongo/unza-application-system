@@ -1,11 +1,11 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Navbar from '@/components/navbar'
 
 export const metadata = {
-  metadataBase: new URL('https://postgres-starter.vercel.app'),
-  title: 'Vercel Postgres Demo with Prisma',
+  title: 'UNZA Application System',
   description:
-    'A simple Next.js app with Vercel Postgres as the database and Prisma as the ORM',
+    'UNZA Application System Database Project',
 }
 
 const inter = Inter({
@@ -21,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>{children}</body>
+      <body className={inter.variable}>
+        <Navbar/>
+        {children}
+      </body>
     </html>
   )
 }
