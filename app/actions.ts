@@ -8,10 +8,10 @@ import { APPLICANT_ID_COOKIE_KEY } from './constants';
 
 export async function handleSignUp (formData: FormData) {
   'use server';
-  const firstName = formData.get('first_name');
-  const lastName = formData.get('last_name');
-  const emailAddress = formData.get('email_address');
-  const password = formData.get('password');
+  const firstName = formData.get('first_name') as string;
+  const lastName = formData.get('last_name') as string;
+  const emailAddress = formData.get('email_address') as string;
+  const password = formData.get('password') as string;
   const encryptedPassword = await bcrypt.hash(password, 10);
   try {
     const result = await sql`
@@ -27,8 +27,8 @@ export async function handleSignUp (formData: FormData) {
 }
 
 export async function handleSignIn (formData: FormData) {
-  const emailAddress = formData.get('email_address');
-  const password = formData.get('password');
+  const emailAddress = formData.get('email_address') as string;
+  const password = formData.get('password') as string;
   let redirectPath = '/signup';
   try {
     const result = await sql`
@@ -61,7 +61,7 @@ export async function fetchSchools() {
   return schools;
 }
 
-export async function fetchDepartments(school) {
+export async function fetchDepartments(school: string) {
   const formattedSchool = school.split("-").join(" ");
   const { rows: departments } = await sql`
     SELECT departments.department_id, departments.name
@@ -80,7 +80,7 @@ export async function fetchApplications() {
   return applications;
 }
 
-export async function submitApplication(departmentId) {
+export async function submitApplication(departmentId: string) {
   const applicantId = cookies().get(APPLICANT_ID_COOKIE_KEY)?.value;
   await sql`
     INSERT INTO applications (applicant_id, department_id, status)
