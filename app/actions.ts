@@ -13,17 +13,20 @@ export async function handleSignUp (formData: FormData) {
   const emailAddress = formData.get('email_address') as string;
   const password = formData.get('password') as string;
   const encryptedPassword = await bcrypt.hash(password, 10);
+  let redirectPath = '/signup';
   try {
     const result = await sql`
       INSERT INTO applicants (first_name, last_name, email_address, encrypted_password)
-      VALUES (${firstName}, ${lastName}, ${emailAddress}, ${encryptedPassword});
+      VALUES (${firstName}, ${lastName}, ${emailAddress}, ${encryptedPassword})
+      RETURNING *;
     `;
     const applicant = result.rows[0];
     cookies().set(APPLICANT_ID_COOKIE_KEY, applicant.applicant_id);
-    redirect('/applications');
+    redirectPath = '/applications'
   } catch (e) {
     console.log(e);
   }
+  redirect(redirectPath)
 }
 
 export async function handleSignIn (formData: FormData) {
