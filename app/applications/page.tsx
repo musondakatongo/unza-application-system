@@ -24,18 +24,18 @@ export default async function Applications() {
                   </tr>
               </thead>
               <tbody>
-                 {applications.map(application => (
-                      <tr className="bg-white border-b">
-                      <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
-                          {application.school}
-                      </th>
-                      <td className="px-6 py-4">
-                          {application.department}
-                      </td>
-                      <td className="px-6 py-4">
-                          {application.status}
-                      </td>
-                  </tr>
+                 {applications.map((application, index) => (
+                      <tr key={index} className="bg-white border-b">
+                        <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
+                            {application.school}
+                        </th>
+                        <td className="px-6 py-4">
+                            {application.department}
+                        </td>
+                        <td className="px-6 py-4">
+                            {application.status}
+                        </td>
+                    </tr>
                  ))}  
               </tbody>
           </table>

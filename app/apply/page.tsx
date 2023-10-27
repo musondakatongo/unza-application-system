@@ -21,8 +21,8 @@ export default async function Apply() {
                   </tr>
               </thead>
               <tbody>
-                {schools.map(school => (
-                  <tr className="bg-white border-b">
+                {schools.map((school, key) => (
+                  <tr key={key} className="bg-white border-b">
                     <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {school.name}
                     </td>

@@ -30,8 +30,8 @@ export default async function Department({
                   </tr>
               </thead>
               <tbody>
-                {departments.map(department => (
-                  <tr className="bg-white border-b">
+                {departments.map((department, index) => (
+                  <tr key={index} className="bg-white border-b">
                     <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {department.name}
                     </td>
