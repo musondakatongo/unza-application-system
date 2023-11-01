@@ -1,4 +1,4 @@
-import { authenticate, fetchApplications } from "../actions"
+import { authenticate, fetchApplications } from "@/app/actions"
 
 export default async function Applications() {
  
